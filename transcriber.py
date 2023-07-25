@@ -7,7 +7,8 @@ def transcribe():
     r = sr.Recognizer()
 
     # get a list of audio files from the juice/wavs directory
-    wav_files = glob.glob('./wavs/*.wav')
+    #wav_files = glob.glob('./wavs/*.wav')
+    wav_files = glob.glob('./wavs_split_final/*.wav')
 
     metadata = []
 
