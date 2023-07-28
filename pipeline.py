@@ -1,7 +1,12 @@
+# -*- coding: utf-8 -*-
 import os
 import glob
 import shutil
 from audiosplitter import split_all_audios, split_long_audios, filter_short_audios
+
+from transcriber import transcribe
+from swearing import replace_censored_words
+from make_dataset import make_dataset
 
 # clear out the wavs folder using python
 
@@ -29,21 +34,15 @@ filter_short_audios();
 
 # 2. transcribe audio files with transcriber
 
-from transcriber import transcribe
-
 transcribe();
 
 # 3. swearing
-
-from swearing import replace_censored_words
 
 replace_censored_words();
 
 print('replace_censored_words')
 
 # 4. prepare dataset
-
-from make_dataset import make_dataset
 
 make_dataset();
 

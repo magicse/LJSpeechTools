@@ -16,7 +16,7 @@ censored_words = {
 }
 
 def replace_censored_words():
-    with open('metadata.csv', 'r') as f:
+    with open('metadata.csv', 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         metadata = list(reader)
 
@@ -26,7 +26,8 @@ def replace_censored_words():
             first_letter = censored_word[0] + censored_words[censored_word]
             row[0] = row[0].replace(censored_word, first_letter)
 
-    with open('metadata.csv', 'w') as f:
+    #with open('metadata.csv', 'w') as f:
+    with open("metadata.csv", "w", encoding="utf-8", newline='\n') as f:
         writer = csv.writer(f)
         writer.writerows(metadata)
 

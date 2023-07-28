@@ -6,7 +6,7 @@ import os
 
 def make_dataset():
     # read in the metadata.csv file
-    with open('metadata.csv', 'r') as f:
+    with open('metadata.csv', 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
         data = list(reader)
         # split the lines into two different arrays -- train and val
@@ -15,20 +15,22 @@ def make_dataset():
         val = []
         for line in data:
             if random.random() < 0.1:
-                val.append(line[0].replace('./wavs/', ''))
+                #val.append(line[0].replace('./wavs/', ''))
+                val.append(line[0].replace('./wavs_split_final\\', ''))
             else:
-                train.append(line[0].replace('./wavs/', ''))
+                #train.append(line[0].replace('./wavs/', ''))
+                train.append(line[0].replace('./wavs_split_final\\', ''))
         # save the files
-        with open('trainfiles.txt', 'w') as f:
+        with open('trainfiles.txt', 'w', encoding='utf-8') as f:
             for line in train:
                 f.write(line + '\n')
-        with open('valfiles.txt', 'w') as f:
+        with open('valfiles.txt', 'w', encoding='utf-8') as f:
             for line in val:
                 f.write(line + '\n')
 
     # zip all the wavs in the wavs folder into a zip file and save as dataset.zip
     #os.system('zip -r dataset.zip wavs trainfiles.txt valfiles.txt')
-    command = r'"C:\Program Files\7-Zip\7z" a -tzip dataset.zip wavs trainfiles.txt valfiles.txt'
+    command = r'"C:\Program Files\7-Zip\7z" a -ao -tzip dataset.zip wavs_split_final trainfiles.txt valfiles.txt'
     os.system(command)
 
 if __name__ == "__main__":
